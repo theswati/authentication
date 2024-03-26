@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-up</title>
+    <title>login</title>
     <style>
         input,button{
             display:block;
@@ -13,52 +13,41 @@
     </style>
 </head>
 <body>
-    <h1>Signup</h1>
+    <h1>Login</h1>
     <p id="message"></p>
-    <fieldset>
-    <legend>Sign-up</legend>
+   
     <form>
-        <input type="text" name="name" placeholder="Name" id="name">
+        <fieldset>
+            <legend>Login</legend>
         <input type="text" name="email" placeholder="Email" id="email">
         <input type="password" name="password" placeholder="password " id="password">
-        <input type="password" name="password" placeholder="Confirm Password" id="confirm-password">
-
-        <button type="submit">Signup</button>
+        <button type="submit">Login</button>
+    </fieldset>
 </form>
 
-</fieldset>
 
-<!-- // signup api-https://instagram-express-app.vercel.app/api/auth/signup -->
+
+
 
 <script>
     let form=document.querySelector('form');
-    let name_box=document.querySelector("#name");
     let email_box=document.querySelector("#email");
-    let Password_box=document.querySelector("#password")
-    let confirmPassword_box=document.querySelector("#confirm-password");
+    let password_box=document.querySelector("#password")
     let message = document.querySelector("#message")
     
 
-      form.addEventListener("submit",signup)
+      form.addEventListener("submit",login)
 
-       async function signup(eventDetails){
+       async function login(eventDetails){
 
         eventDetails.preventDefault()
-        
-        let name=name_box.value;
         let email=email_box.value;
-        let password=Password_box.value;
-        let confirmPassword=confirmPassword_box.value;
+        let password=password_box.value;
      
         //validations:
 
-        if(name==""||email==""||password==""||confirmPassword==""){
+        if(email==""||password==""){
             alert("Please fill all the details");
-            return;
-        }
-
-        if (password!=confirmPassword){
-            alert("Password and confirm password should be same");
             return;
         }
 
@@ -69,7 +58,7 @@
         // catch statement allows you to define a block of code to be executed ,if an error occurs in the try block.
 
         try{
-            let response = await fetch("https://instagram-express-app.vercel.app/api/auth/signup",{
+            let response = await fetch("https://instagram-express-app.vercel.app/api/auth/login",{
 
             method:"POST",
             headers:{
@@ -79,7 +68,6 @@
             },
 
             body:JSON.stringify({
-                name:name,
                 email:email,
                 password:password
             })
